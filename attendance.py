@@ -15,7 +15,7 @@ for cl in myList:
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
 
-# Encode faces
+# image wala
 def findEncodings(images):
     encodeList = []
     for img in images:
@@ -26,7 +26,7 @@ def findEncodings(images):
 
 encodeListKnown = findEncodings(images)
 
-# Mark attendance
+#  attendance
 def markAttendance(name):
     with open('attendance.csv', 'r+') as f:
         myDataList = f.readlines()
@@ -34,6 +34,7 @@ def markAttendance(name):
         for line in myDataList:
             entry = line.split(',')
             nameList.append(entry[0])
+#gg
         if name not in nameList:
             now = datetime.now()
             dtString = now.strftime('%H:%M:%S')
