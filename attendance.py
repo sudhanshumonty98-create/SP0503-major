@@ -67,5 +67,7 @@ while True:
 
     cv2.imshow('Face Attendance System', img)
     if cv2.waitKey(1) == 13: 
+        break
+        
 cap.release()
 cv2.destroyAllWindows()
