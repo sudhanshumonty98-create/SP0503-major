@@ -16,7 +16,7 @@ for cl in myList:
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
 
-# Encode faces
+# images
 def findEncodings(images):
     encodeList = []
     for img in images:
@@ -27,7 +27,7 @@ def findEncodings(images):
 
 encodeListKnown = findEncodings(images)
 
-# Mark attendance
+#  attendance
 def markAttendance(name):
     with open('attendance.csv', 'r+') as f:
         myDataList = f.readlines()
@@ -40,7 +40,7 @@ def markAttendance(name):
             dtString = now.strftime('%H:%M:%S')
             f.writelines(f'\n{name},{dtString}')
 
-# Webcam
+# cam
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -66,8 +66,8 @@ while True:
             markAttendance(name)
 
     cv2.imshow('Face Attendance System', img)
-    if cv2.waitKey(1) == 13:  # Press Enter to exit
-        break
+    if cv2.waitKey(1) == 13:  #  Enter to exit
+       break
 
 cap.release()
 cv2.destroyAllWindows()
