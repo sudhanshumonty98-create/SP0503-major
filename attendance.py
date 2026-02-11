@@ -4,6 +4,7 @@ import face_recognition
 import os
 from datetime import datetime
 
+# Path to images folder
 path = 'images'
 images = []
 classNames = []
@@ -15,7 +16,7 @@ for cl in myList:
     images.append(curImg)
     classNames.append(os.path.splitext(cl)[0])
 
-# image wala
+# Encode faces
 def findEncodings(images):
     encodeList = []
     for img in images:
@@ -26,7 +27,7 @@ def findEncodings(images):
 
 encodeListKnown = findEncodings(images)
 
-#  attendance
+# Mark attendance
 def markAttendance(name):
     with open('attendance.csv', 'r+') as f:
         myDataList = f.readlines()
@@ -34,13 +35,12 @@ def markAttendance(name):
         for line in myDataList:
             entry = line.split(',')
             nameList.append(entry[0])
-#gg
         if name not in nameList:
             now = datetime.now()
             dtString = now.strftime('%H:%M:%S')
             f.writelines(f'\n{name},{dtString}')
 
-# camera
+# Webcam
 cap = cv2.VideoCapture(0)
 
 while True:
@@ -66,6 +66,8 @@ while True:
             markAttendance(name)
 
     cv2.imshow('Face Attendance System', img)
-    if cv2.waitKey(1) == 13: 
+    if cv2.waitKey(1) == 13:  # Press Enter to exit
+        break
+
 cap.release()
 cv2.destroyAllWindows()
