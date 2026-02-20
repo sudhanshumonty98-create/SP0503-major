@@ -10,7 +10,7 @@ path = 'images'
 images = []
 classNames = []
 
-<<<<<<< HEAD
+
 #   Load encodings from pickle 
 
 ENCODINGS_FILE = "encodings.pickle"
@@ -39,7 +39,7 @@ else:
                
             images.append(curImg)
             classNames.append(personName) # ← same name for all photos of this person
-=======
+
 myList = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
 
 
@@ -68,7 +68,6 @@ def findEncodings(images):
         encode = face_recognition.face_encodings(img,model="hog")[0]# trying hog       
         encodeList.append(encode)
     return encodeList
->>>>>>> 5dbfd2cf2a67d928606ffc6e1aaaa318f3d1f4cd
 
     print(f"Loaded {len(images)} images for {len(set(classNames))} persons")
 
@@ -105,29 +104,29 @@ def markAttendance(name):
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)#LOWER RESOLUTION
-<<<<<<< HEAD
-frame_count = 0
-SKIP_FRAMES = 5
-=======
 
 frame_count = 0
 SKIP_FRAMES = 5
 
->>>>>>> 5dbfd2cf2a67d928606ffc6e1aaaa318f3d1f4cd
+
+frame_count = 0
+SKIP_FRAMES = 5
+
+
 frame_count = 0
 while True:
     success, img = cap.read()
     imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
-<<<<<<< HEAD
-    facesCurFrame = face_recognition.face_locations(imgS,model="hog")
-    encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame,model="hog")
-=======
 
     facesCurFrame = face_recognition.face_locations(imgS,model="hog")
     encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame,model="hog")
 
->>>>>>> 5dbfd2cf2a67d928606ffc6e1aaaa318f3d1f4cd
+
+    facesCurFrame = face_recognition.face_locations(imgS,model="hog")
+    encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame,model="hog")
+
+
     for encodeFace, faceLoc in zip(encodesCurFrame, facesCurFrame):
         matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
         faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
@@ -141,11 +140,9 @@ while True:
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
             markAttendance(name)
     cv2.imshow('Face Attendance System', img)
-<<<<<<< HEAD
+
     if cv2.waitKey(1)&0xFF == 13: # Enter to exit
-=======
-    if cv2.waitKey(1)&0xFF == 13:  #  Enter to exit
->>>>>>> 5dbfd2cf2a67d928606ffc6e1aaaa318f3d1f4cd
+
        break
 cap.release()
 cv2.destroyAllWindows()
