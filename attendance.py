@@ -109,8 +109,6 @@ frame_count = 0
 SKIP_FRAMES = 5
 
 
-frame_count = 0
-SKIP_FRAMES = 5
 
 
 frame_count = 0
@@ -118,10 +116,6 @@ while True:
     success, img = cap.read()
     imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
-
-    facesCurFrame = face_recognition.face_locations(imgS,model="hog")
-    encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame,model="hog")
-
 
     facesCurFrame = face_recognition.face_locations(imgS,model="hog")
     encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame,model="hog")
